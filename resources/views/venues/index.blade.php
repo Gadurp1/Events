@@ -27,33 +27,31 @@ z-index: -99;background:#000;opacity:.5;
   </div>
 </div>
 
+
+
+<br><br>
             <!-- content-8  -->
             <section class="container v-center">
               <div class="row ">
-                @foreach($festivals as $festival)
-                  <div class="col-sm-12 col-md-4 ">
-                    <div class="panel panel-default panel-image" style="height:300px">
-                    <a class="" href="{{url('festivals/'.$festival->id.'')}}">
-                    <div class="row">
-                      <img src="{{$festival->img}}"  alt="{{$festival->Name}}" class="img-responsive col-md-12">
-                    </div>
+                @foreach($venues as $venue)
+                  <div class="col-md-8 ">
+                    <div class="panel panel-default panel-body" >
+                    <a class="" href="{{url('Venues/'.$venue->id.'')}}">
+
                     <div class="row">
                       <div class="col-md-12">
-                        <div class="tile">
-                          <h4 class="tile-title">{{$festival->Name}}</h4>
-                          Begins {{date('D M d',strtotime($festival->start))}}</a>
+                        <div class="">
+                          <h3 class="">{{$venue->name}}</h3>
+                        </a>
                         </div>
                       </div>
                     </div>
                   </div>
                   </div>
                 @endforeach
+              </div>
+                {!!$venues->render()!!}
                 </div>
               </section>
-              <section class="content-11">
-                  <div class="container">
-                      <span>Get Notified of New Events in Chicago</span>
-                      <a class="btn btn-large btn-success" href="#">Sign Me Up!</a>
-                  </div>
-              </section>
+
       @stop

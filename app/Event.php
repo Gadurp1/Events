@@ -10,9 +10,9 @@ class Event extends Model {
 	protected $table = 'events';
 	public $timestamps = true;
 
-	public function artists()
+	public function scopeArtists($id)
 	{
-		return $this->hasMany('artists');
+		return \App\ArtistEvent::where('event_id',$id);
 	}
 
 }

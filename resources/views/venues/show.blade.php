@@ -1,10 +1,10 @@
 @extends('app')
 
 @section('content')
-        @if($event->image_url)
+        @if($venue->image_url)
         <style media="screen">
         .header-10-sub .background {
-          background-image: url("{{url('$event->image_url')}}");
+          background-image: url("{{url('$venue->image_url')}}");
           opacity: 85;
           filter: alpha(opacity=8500);
           opacity: 0.85;
@@ -14,7 +14,7 @@
         @else
         <style media="screen">
         .header-10-sub .background {
-          background-image: url("{{url('$event->image_url')}}");
+          background-image: url("{{url('$venue->image_url')}}");
           opacity: 85;
           filter: alpha(opacity=8500);
 
@@ -37,11 +37,11 @@
                 <div style="background-color:rgba(0, 0, 0, 0.8);">
                     <div class="container">
                         <div class="hero-unit" style="z-index:">
-                            <h1 style="font-size:73px"><strong>{{$event->name}}</strong></h1>
+                            <h1 style="font-size:73px"><strong>{{$venue->name}}</strong></h1>
                             <h1 style="color:#fff">
-                                {{$event->location}}
+                                {{$venue->location}}
                                 <br/>
-                              {{date('D M d',strtotime($event->date))}}
+                              {{date('D M d',strtotime($venue->date))}}
                             </h1>
                         </div>
                     </div>
@@ -132,17 +132,17 @@
                   </div>
               </section>
 
-            @if($artists->count() > 0)
+            @if($events->count() > 0)
             <!-- content-8  -->
             <section class="container">
               <div class="row ">
-                <h1 class="text-center"><strong>{{date('D M d',strtotime($event->start))}}</strong></h1>
+                <h1 class="text-center"><strong>{{date('D M d',strtotime($venue->start))}}</strong></h1>
                 <hr>
-                @foreach($artists as $artist)
+                @foreach($events as $event)
                   <div class="col-md-6 ">
                     <div class="panel panel-body text-center ">
                       <img src="{{url('assets/img/icons/svg/compas.svg')}}" alt="Compas" class="hidden tile-image big-illustration">
-                      <h5>{{$artist->name}}</h5>
+                      <h5>{{$event->name}}</h5>
                     </div>
                   </div>
                 @endforeach

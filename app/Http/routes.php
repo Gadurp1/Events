@@ -9,6 +9,7 @@ use App\Repositories\ReportRepository;
 |
 */
 Route::resource('Events', 'EventController');
+Route::resource('Venues', 'VenueController');
 
 Route::resource('festivals', 'FestivalsController');
 Route::resource('eventdays', 'EventDaysController');

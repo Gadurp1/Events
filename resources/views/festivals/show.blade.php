@@ -46,7 +46,7 @@
                         </div>
                     </div>
                 </div>
-                <a class="control-btn " href="#">V </a>
+                <a class="control-btn " href="#"><img height="25px" src="http://www.tuxandgownevents.com/wp-content/uploads/2015/02/arrow-down.png" alt="" /></a>
             </section>
             <section class="content-11">
                 <div class="container">

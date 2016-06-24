@@ -8,17 +8,7 @@ use App\Event;
 use Spatie\Analytics\Period;
 class EventController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
 
-        // $this->middleware('subscribed');
-    }
 
     /**
      * Show the application dashboard.
@@ -31,12 +21,15 @@ class EventController extends Controller
       $now = \Carbon\Carbon::now();
 
       $future = \Carbon\Carbon::now()->addWeeks(2);
-      $events=Event::orderBy('date','ASC')
-          ->where('date','<',$future)
-          ->where('date','>',$now)
+      $search=null;
+      $search=$request->search;
+      $events=\App\ArtistEvent::orderBy('date','ASC')
+      ->join('events', 'artists.event_id', '=', 'events.id')
+      ->selectRaw('events.image_url as image_url,events.id as event_id,artists.name,artists.mbid,events.name as title,events.date,artists.image_url')
           ->where('ticket_status','available')
-          ->groupBy('name')
-          ->paginate(50);
+          ->where('artists.name','LIKE', '%'.$search.'%')
+          ->groupBy('event_id')
+          ->paginate(12);
       return view('events.index',compact('events'));
     }
     /**
@@ -51,6 +44,7 @@ class EventController extends Controller
       $future = \Carbon\Carbon::now()->addWeeks(2);
       $event=Event::find($id);
       $artists=\App\ArtistEvent::where('event_id',$id)->get();
-      return view('events.show',compact('event','artists'));
+      $venue=\App\Venue::where('id',$event->venue_id)->first();
+      return view('events.show',compact('event','artists','venue'));
     }
 }
