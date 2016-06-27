@@ -1,68 +1,40 @@
 @extends('app')
 
 @section('content')
-        @if($festival->img)
-        <style media="screen">
-        .header-10-sub .background {
-          background-image: url("{{$festival->img}}");
-          opacity: 85;
-          filter: alpha(opacity=8500);
-          opacity: 0.85;
-          filter: alpha(opacity=85);
-        }
-        </style>
-        @else
-        <style media="screen">
-        .header-10-sub .background {
-          background-image: url("http://wallpapercave.com/wp/tmx6W6N.png");
-          opacity: 85;
-          filter: alpha(opacity=8500);
+<div class="container">
 
-          filter: blur(100px) brightness(0.5);
-        }
-        </style>
-        @endif
+</div>
+<aside id="fh5co-hero" class="js-fullheight">
+  <div class="flexslider js-fullheight">
+    <ul class="slides">
+      <li style="background-image: url({{$festival->img}});">
+        <div class="overlay-gradient"></div>
+        <div class="container">
+          <div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
+            <div class="slider-text-inner">
+              <h2>  <strong>{!! $festival->Name !!}</strong></h2>
+              <p><a href="#" class="btn btn-primary btn-lg">{{$festival->start}}</a></p>
+            </div>
+          </div>
+        </div>
+      </li>
 
-        <style>
-        div.section{
-          margin-top: 50px;
-          margin-bottom: 50px;
-        }
-
-        </style>
-            <section class="header-10-sub v-center bg-midnight-blue" style="height:300px">
-                <div class="background">
-                    &nbsp;
-                </div>
-                <div style="background-color:rgba(0, 0, 0, 0.8);">
-                    <div class="container">
-                        <div class="hero-unit" style="z-index:">
-                            <h1 style="font-size:73px"><strong>{{$festival->Name}}</strong></h1>
-                            <h1 style="color:#fff">
-                                {{$festival->location}}
-                                <br/>
-                              {{date('D M d',strtotime($festival->start))}} to {{date('D M d,',strtotime($festival->start))}}
-                            </h1>
-                        </div>
-                    </div>
-                </div>
-                <a class="control-btn " href="#"><img height="25px" src="http://www.tuxandgownevents.com/wp-content/uploads/2015/02/arrow-down.png" alt="" /></a>
-            </section>
-            <section class="content-11">
-                <div class="container">
-                    <span>Get Updates On All Chicago Events</span>
-                    <a class="btn btn-large btn-success" href="#">Sign Up!</a>
-                </div>
-            </section>
+      </ul>
+    </div>
+</aside>
 
             <br>
             <div class="container">
 
-            <div class="row section">
-                <div class="col-md-6 com-md-offset-1">
+            <div class="r">
+                <div class="col-md-8 com-md-offset-1">
+                  <div class="panel panel-default panel-body">
+
                 {!! $festival->description !!}
 <a href="{{$festival->website}}" class="btn btn-info btn-lg">View Website</a>
                 </div>
+              </div>
+
                 <div class="col-md-6">
 <iframe src="{{$festival->playlist_url}}" frameborder="0" allowtransparency="true" width="100%" height="300px"></iframe>              </div>
             </div>
@@ -84,6 +56,10 @@
                 @endforeach
                 </div>
               </section>
+            </div>
               @endif
+            </div>
+          </div>
+        </div>
 
 @stop

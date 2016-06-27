@@ -1,57 +1,93 @@
 @extends('app')
 @section('content')
-<style media="screen">
-  div.jumbotron-main h1{
-    color:#fff;
-    font-weight: 800
-  }
-  div.ontop {
-  position: relative;
-  top: 4.7em;
-}
-div.backdrop{
-z-index: -99;background:#000;opacity:.5;
-}
-</style>
-<div class="jumbotron jumbotron-main" style="background:url('https://moviechutzpah.files.wordpress.com/2008/08/2733689746_0434e31f68_b-1.jpg') no-repeat center center ;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;">
-  <div class="backdrop">
-    <div class="container text-center" style=" z-index: 99">
-      <h1>  The Home of Chicago's Music Events</h1>
-          <p>  View and share events happening aroud chicago
-      </p>
+<div id="fh5co-work-section" class="fh5co-light-grey-section">
+
+	<div class="container">
+
+	</div>
+  <div class="row">
+    <div class="container">
+      <div class="col-md-6">
+        {!! Form::open(['method' => 'GET','class' => 'search-bar']) !!}
+        {!! Form::text('search',null,['class'=>'form-control input-sm col-md-12','placeholder'=>'Fest,Venue, Artist']) !!}
+
+      </div>
+      {!! Form::close() !!}
+      <div class="col-md-3">
+        <input type="search" id="address" class="form-control" placeholder="Where are we going?" />
+
+
+
+        <script src="https://cdn.jsdelivr.net/places.js/1/places.min.js"></script>
+        <script>
+        (function() {
+          var placesAutocomplete = places({
+            container: document.querySelector('#address')
+          });
+
+          var $address = document.querySelector('#address-value')
+          placesAutocomplete.on('change', function(e) {
+            $address.textContent = e.suggestion.value
+          });
+
+          placesAutocomplete.on('clear', function() {
+            $address.textContent = 'none';
+          });
+
+        })();
+        </script>                    </div>
+      <div class="col-md-2">
+        <select type="text" class="form-control " aria-label="...">
+        <option>Today</option>
+        <option>This Week</option>
+        <option>Next Week</option>
+
+        </select>
+      </div>
+
+        <div class="col-md-1">
+          <a href="#" class="btn btn-success">Find</a>
+
+          </select>
     </div>
   </div>
+    <br><br>
 </div>
+<div id="fh5co-work-section" class="fh5co-light-grey-section">
 
+		<div class="container">
 
-
-<br><br>
-            <!-- content-8  -->
-            <section class="container v-center">
-              <div class="row ">
-                @foreach($venues as $venue)
-                  <div class="col-md-8 ">
-                    <div class="panel panel-default panel-body" >
-                    <a class="" href="{{url('Venues/'.$venue->id.'')}}">
-
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="">
-                          <h3 class="">{{$venue->name}}</h3>
-                        </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-                @endforeach
+			<div class="row">
+        @foreach($venues as $venue)
+        <div class="col-md-4 animate-box">
+          <a href="{{url('Venues/'.$venue->id.'')}}" class="item-grid text-center">
+            <div class="v-align">
+              <div class="v-align-middle">
+                <h3 class="title">{{$venue->name}}</h3>
               </div>
-                {!!$venues->render()!!}
-                </div>
-              </section>
+            </div>
+            <div class="image" style="background-image: url({{$venue->image_url}})"></div>
+            <p>{{$venue->upcoming_events}} Upcoming Events</p>
+          </a>
+        </div>
+        @endforeach
 
-      @stop
+
+				<div class="col-md-12 text-center animate-box">
+					<p><a href="#" class="btn btn-primary with-arrow">Load More <i class="icon-arrow-right"></i></a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="fh5co-cta" style="background-image: url(images/slide_2.jpg);">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="col-md-12 text-center animate-box">
+				<h3>We Try To Update The Site Everyday</h3>
+				<p><a href="#" class="btn btn-primary btn-outline with-arrow">Get started now! <i class="icon-arrow-right"></i></a></p>
+			</div>
+		</div>
+	</div>
+
+@stop

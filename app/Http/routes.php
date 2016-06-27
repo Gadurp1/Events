@@ -8,6 +8,8 @@ use App\Repositories\ReportRepository;
 | All Routes for our application
 |
 */
+Route::get('', 'FestivalsController@home');
+
 Route::resource('Events', 'EventController');
 Route::resource('Venues', 'VenueController');
 

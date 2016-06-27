@@ -24,7 +24,7 @@ class VenueController extends Controller
       $search=null;
       $search=$request->search;
 
-      $venues=DB::table('unique_venues')->orderBy('upcoming_events','DESC')->paginate(20);
+      $venues=DB::table('all_venues')->orderBy('upcoming_events','DESC')->paginate(20);
       return view('venues.index',compact('venues'));
     }
     /**
@@ -36,9 +36,16 @@ class VenueController extends Controller
 
     {
       $now = \Carbon\Carbon::now();
+      $tomorrow = \Carbon\Carbon::now()->addDays(1);
+
       $future = \Carbon\Carbon::now()->addWeeks(2);
       $venue=Venue::find($id);
-      $events=\App\Event::where('name','LIKE','%'.$venue->name.'%')->get();
+      $events=\App\Event::where('events.name','LIKE','%'.$venue->name.'%')
+          ->join('artists', 'events.id', '=', 'artists.event_id')
+          ->selectRaw('artists.image_url as image_url,events.id as event_id,artists.name,artists.mbid,events.name as title,events.date')
+          ->where('events.date','>',$tomorrow)
+          ->orderBy('events.date','asc')
+          ->get();
       return view('venues.show',compact('venue','events'));
     }
 }

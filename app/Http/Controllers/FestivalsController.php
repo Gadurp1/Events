@@ -17,21 +17,31 @@ class FestivalsController extends Controller {
    *
    * @return Response
    */
-  public function index()
+  public function indexs()
   {
     $festivals=Festivals::orderBy('start','ASC')
-    ->where('start','>','00-00-00 00:00:00')
-
-    ->get();
+    ->where('start','>','2016-06-25 00:00:00')
+    ->paginate(6);
     return view('festivals.index')->with('festivals',$festivals);
   }
-
   /**
    * Display a listing of the resource.
    *
    * @return Response
    */
-  public function indexs()
+  public function home()
+  {
+    $festivals=Festivals::orderBy('start','ASC')
+    ->where('start','>','2016-06-25 00:00:00')
+    ->paginate(6);
+    return view('welcome')->with('festivals',$festivals);
+  }
+  /**
+   * Display a listing of the resource.
+   *
+   * @return Response
+   */
+  public function index()
   {
     for ($i = 100; $i <= 150; $i++)
 {
