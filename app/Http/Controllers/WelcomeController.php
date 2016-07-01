@@ -11,8 +11,9 @@ class WelcomeController extends Controller
      *
      * @return Response
      */
-    public function show()
+    public function index()
     {
+
         return view('welcome');
     }
 }

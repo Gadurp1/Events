@@ -29,7 +29,7 @@ class EventController extends Controller
           ->where('ticket_status','available')
           ->where('artists.name','LIKE', '%'.$search.'%')
           ->groupBy('event_id')
-          ->paginate(12);
+          ->get();
       return view('events.index',compact('events'));
     }
     /**

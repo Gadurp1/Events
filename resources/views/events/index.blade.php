@@ -1,76 +1,109 @@
 @extends('app')
+<link rel="stylesheet" href="http://s.mlcdn.co/animate.css">
+
 @section('content')
+<style media="screen">
+  div.completed{
+    border-left:2px solid red
+  }
+</style>
 
-	<div id="fh5co-work-section" class="fh5co-light-grey-section">
-		<div class="container">
-              <div class="row">
-                <div class="container">
-                  <div class="col-md-7">
-                    {!! Form::open(['method' => 'GET','class' => 'search-bar']) !!}
-                    {!! Form::text('search',null,['class'=>'form-control input-md col-md-12','placeholder'=>'Fest,Venue, Artist']) !!}
+<div id="fh5co-work-section" class="fh5co-light-grey-section">
+  <div class="container">
+    <div id="app">
+      <tasks :list="tasks"></tasks>
+    </div>
+  </div>
+</div>
 
-                  </div>
-                  {!! Form::close() !!}
-                  <div class="col-md-3">
-                    <input type="search" id="address" class="form-control" placeholder="Where are we going?" />
+<template id="tasks-template">
+  <h1  v-show="remaining">
+    @{{remaining}}
+    Active  Events   <a  class="btn btn-sm btn-danger pull-right"  @click="clearCompleted" > Clear All Completed</a>
+  </h1>
 
+  <div class="alert alert-danger"  v-show="!remaining">
+    <p class="lead" >
+      No Active  Events  <a  class="btn btn-sm btn-danger pull-right"  @click="clearCompleted" > Clear All Completed</a>
+    </p>
+  </div>
 
+    <div class="" v-show="list.length">
+      <div :class="{ 'completed':task.completed }"
+        v-for="task in list"
 
-                    <script src="https://cdn.jsdelivr.net/places.js/1/places.min.js"></script>
-                    <script>
-                    (function() {
-                      var placesAutocomplete = places({
-                        container: document.querySelector('#address')
-                      });
+      >
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"></h3>
+        </div>
+        <div class="panel-body">
+          @{{task.body}}<br>
+          Complete:@{{task.completed}}
+          <a  class="btn btn-sm btn-info pull-right" v-show="! task.completed"  @click="task.completed = ! task.completed" > Mark Completed </a>
+          <a  class="btn btn-sm btn-success pull-right" v-show="task.completed"  @click="task.completed = ! task.completed" > Mark Incomplete </a>
+          <a  class="btn btn-sm btn-danger pull-right" v-show="task.completed"  @click="deleteTask(task)" > Remove Task</a>
+        </div>
+        <div class="panel-footer">
+        </div>
+      </div>
+    </div>
+    <div class="" v-show="!list.length">
+      <div class="panel panel-body">
+        <h1>No Events Found</h1>
+      </div>
+    </div>
+  </div>
 
-                      var $address = document.querySelector('#address-value')
-                      placesAutocomplete.on('change', function(e) {
-                        $address.textContent = e.suggestion.value
-                      });
+</template>
 
-                      placesAutocomplete.on('clear', function() {
-                        $address.textContent = 'none';
-                      });
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.min.js"></script>
+<script type="text/javascript">
 
-                    })();
-                    </script>                    </div>
-                  <div class="col-md-2">
-                    <select type="text" class="form-control " aria-label="...">
-                    <option>Today</option>
-                    <option>This Week</option>
-                    <option>Next Week</option>
+  Vue.component('tasks', {
+    props:['list'],
 
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="row ">
-                @foreach($events as $event)
-                  <div class="col-md-4 ">
-                    <div class="panel panel-default panel-body" style="height:300px">
-                    <a class="" href="{{url('Events/'.$event->event_id.'')}}">
-                    <div class="" style="height:15em;background:url('{{$event->image_url}}');no-repeat center center ;
-                      -webkit-background-size: cover;
-                      -moz-background-size: cover;
-                      -o-background-size: cover;
-                      background-size: cover;">
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="">
-                          <h3 class="">{{$event->name}}</h3>
-                          {{date('D M d',strtotime($event->date))}}
-                          <hr>
-                        </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-                @endforeach
-              </div>
-                {!!$events->render()!!}
-                </div>
-              </section>
+    template:'#tasks-template',
 
-      @stop
+    computed: {
+      // a computed getter
+      remaining: function () {
+        var vm= this;
+        return this.list.filter(this.inProgress).length;
+      }
+
+    },
+
+    methods: {
+      isCompleted: function(task){
+        return task.completed;
+      },
+      inProgress: function(task){
+        return ! this.isCompleted(task);
+      },
+      deleteTask: function(task){
+        this.list.$remove(task);
+      },
+      clearCompleted: function(){
+        this.list=this.list.filter(this.inProgress);
+      }
+    }
+  });
+
+  new Vue({
+    el:'#app',
+
+    data:{
+        tasks:[
+          {body:'go to store', completed: false},
+          {body:'go to movies', completed: true},
+          {body:'eat more meat', completed: false},
+          {body:'go to flophouse', completed: false},
+          {body:'go to drugstore', completed: true},
+          {body:'eat more ass', completed: false},
+        ]
+    }
+  });
+
+</script>
+@stop
