@@ -13,7 +13,11 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-
-        return view('welcome');
+      $festivals=\App\Event::where('name','LIKE','%fest%')
+      ->groupBy('name')
+      ->where('date','>','2016-07-08 00:00:00')
+      ->orderBy('date','asc')
+      ->paginate(6);
+        return view('welcome',compact('festivals'));
     }
 }

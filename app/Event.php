@@ -1,18 +1,45 @@
 <?php
-
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Event extends Model {
 
-	protected $table = 'events';
-	public $timestamps = true;
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
 
-	public function scopeArtists($id)
-	{
-		return \App\ArtistEvent::where('event_id',$id);
-	}
+    	protected $table = 'events';
+    	public $timestamps = true;
 
+    	protected $fillable = array('name', 'date',  'ticket_status','ticket_status', 'description', 'image_url');
+    	protected $visible = array('name', 'date',  'ticket_status','ticket_status',  'description', 'image_url');
+
+    	public function eventDays()
+    	{
+    		return $this->hasMany('EventDays');
+    	}
+
+    	public function stages()
+    	{
+    		return $this->hasMany('Stage');
+    	}
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            'name' => 'required',
+        ];
+    }
 }

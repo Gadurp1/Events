@@ -6,7 +6,7 @@
 <aside id="fh5co-hero" class="js-fullheight">
   <div class="flexslider js-fullheight">
     <ul class="slides">
-      <li style="background-image: url(http://66.media.tumblr.com/tumblr_lqbwp93pDY1qa28b0o1_1280.jpg);">
+      <li style="background-image: url({{$event->image_url}});">
         <div class="overlay-gradient"></div>
         <div class="container">
           <div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
@@ -26,7 +26,7 @@
   <div class="row">
 
     <div class="col-md-8">
-
+      {{$event->description}}
     </div>
                 <!-- content-8  -->
                 <section class="col-md-4">

@@ -17,10 +17,12 @@ class FestivalsController extends Controller {
    *
    * @return Response
    */
-  public function indexs()
+  public function index()
   {
-    $festivals=Festivals::orderBy('start','ASC')
-    ->where('start','>','2016-06-25 00:00:00')
+    $festivals=\App\Event::where('name','LIKE','%fest%')
+    ->groupBy('name')
+    ->where('date','>','2016-07-08 00:00:00')
+    ->orderBy('date','asc')
     ->paginate(6);
     return view('festivals.index')->with('festivals',$festivals);
   }
@@ -31,8 +33,10 @@ class FestivalsController extends Controller {
    */
   public function home()
   {
-    $festivals=Festivals::orderBy('start','ASC')
-    ->where('start','>','2016-06-25 00:00:00')
+    $festivals=\App\Event::where('name','LIKE','%fest%')
+    ->groupBy('name')
+    ->where('date','>','2016-07-08 00:00:00')
+    ->orderBy('date','asc')
     ->paginate(6);
     return view('welcome')->with('festivals',$festivals);
   }
@@ -41,17 +45,18 @@ class FestivalsController extends Controller {
    *
    * @return Response
    */
-  public function index()
+  public function indexs()
   {
-    for ($i = 100; $i <= 150; $i++)
+    for ($i = 101; $i <= 150; $i++)
 {
-  $festivals=file_get_contents('http://api.bandsintown.com/events/search.json?api_version=2.0&app_id=YOUR_APP_ID&location=chicago,il&date=2016-06-23,2017-01-01&page='.$i.'');
+  $festivals=file_get_contents('http://api.bandsintown.com/events/search.json?api_version=2.0&app_id=YOUR_APP_ID&location=chicago,il&date=2016-06-23,2018-01-01&page='.$i.'');
 
    foreach(json_decode($festivals) as $festival){
      // Set Venue Values
      $venue=new Venue;
 
      $venue->name=  $festival->venue->name;
+
      $venue->city=  $festival->venue->city;
      $venue->region=  $festival->venue->region;
      $venue->country=  $festival->venue->country;
@@ -63,8 +68,8 @@ class FestivalsController extends Controller {
       $event=new Event;
       // Set Event Values
       $event->venue_id=$venue_id;
-      if(isset($festival->description)){
-        $event->name=  $festival->title;
+      if(isset($festival->title)){
+        $event->name= $festival->title;
       }
       else{
         $event->name=  $festival->venue->name;
@@ -76,6 +81,10 @@ class FestivalsController extends Controller {
       if(isset($festival->description))
       {
         $event->description=$festival->description;
+      }
+      if(ISSET($event->facebook_rsvp_url))
+      {
+        $event->facebook_rsvp_url=$event->facebook_rsvp_url;
       }
       $event->save();
       $event_id=$event->id;
@@ -95,8 +104,9 @@ class FestivalsController extends Controller {
         }
         if(ISSET($artist->thumb_url))
         {
-          $artist_event->thumb_url= $artist->thumb_url;
+          $artist_event->image_url= $artist->thumb_url;
         }
+
         if(ISSET($artist->facebook_tour_dates_url))
         {
           $artist_event->facebook_tour_dates_url= $artist->facebook_tour_dates_url;
@@ -146,7 +156,7 @@ class FestivalsController extends Controller {
    */
   public function show($id)
   {
-    $festival=Festivals::find($id);
+    $festival=\App\Event::find($id);
     $bands=\App\Band::where('festival_id',$id)->get();
     return view('festivals.show')->with('festival',$festival)->with('bands',$bands);
   }

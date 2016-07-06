@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-md-12">
         {!! Form::label('Name', 'Name:') !!}
-        {!! Form::text('Name',null,['class'=>'form-control input-md col-md-12']) !!}
+        {!! Form::text('name',null,['class'=>'form-control input-md col-md-12']) !!}
 
       </div>
     </div>
@@ -14,7 +14,7 @@
     <div class="row">
       <div class="col-md-12">
         {!! Form::label('img', 'Image:') !!}
-        {!! Form::text('img',null,['class'=>'form-control input-md col-md-12']) !!}
+        {!! Form::text('img_url',null,['class'=>'form-control input-md col-md-12']) !!}
       </div>
     </div>
     <hr>
@@ -30,8 +30,8 @@
     </div>
     <hr>
     <div class="row">
-      {!! Form::label('location', 'Location:') !!}
-      {!! Form::text('location',null,['class'=>'form-control input-md col-md-12']) !!}
+      {!! Form::label('ticket_status', 'Ticket Status:') !!}
+      {!! Form::text('ticket_status',null,['class'=>'form-control input-md col-md-12']) !!}
     </div>
     <hr>
     <div class="row">

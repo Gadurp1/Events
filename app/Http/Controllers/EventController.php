@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests;
 use Illuminate\Http\Request;
 use DB;
 use App\Event;
@@ -32,6 +32,33 @@ class EventController extends Controller
           ->get();
       return view('events.index',compact('events'));
     }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+      $event=Event::find($id);
+      return view('events.edit',compact('event'));
+    }
+
+      /**
+       * Update the specified resource in storage.
+       *
+       * @param  int  $id
+       * @return Response
+       */
+      public function update($id, Requests\EventsRequest  $request)
+      {
+        $event=Event::findorFail($id);
+        $event->update($request->all());
+        session()->flash('flash_message','Event Successfully Saved!');
+        return redirect('Events/'.$id.'');
+      }
+
     /**
      * Show the application dashboard.
      *

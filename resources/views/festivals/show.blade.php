@@ -13,7 +13,7 @@
           <div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
             <div class="slider-text-inner">
               <h2>  <strong>{!! $festival->Name !!}</strong></h2>
-              <p><a href="#" class="btn btn-primary btn-lg">{{$festival->start}}</a></p>
+              <p><a href="#" class="btn btn-primary btn-lg">{{date('D M d',strtotime($festival->start))}}</a></p>
             </div>
           </div>
         </div>

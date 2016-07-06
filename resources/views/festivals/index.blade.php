@@ -38,7 +38,7 @@
             <div class="image" style="background-image: url({{$festival->img}})"></div>
             <div class="v-align">
               <div class="v-align-middle">
-                <h3 class="title">{{$festival->Name}}</h3>
+                <h3 class="title">{{$festival->name}}</h3>
                 <h5 class="category">{{$festival->date}}</h5>
               </div>
             </div>
@@ -92,7 +92,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 
 	<div class="fh5co-cta" style="background-image: url(images/slide_2.jpg);">
 		<div class="overlay"></div>
