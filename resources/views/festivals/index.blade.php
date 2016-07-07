@@ -12,8 +12,8 @@
 		   		<div class="container">
 		   			<div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
 		   				<div class="slider-text-inner">
-		   					<h2>Start Your Startup With This Template</h2>
-		   					<p><a href="#" class="btn btn-primary btn-lg">Get started</a></p>
+		   					<h2>Stay up to date with Chicago Events!</h2>
+		   					<p><a href="#" class="btn btn-primary btn-lg">Sign Up</a></p>
 		   				</div>
 		   			</div>
 		   		</div>
@@ -35,7 +35,7 @@
         @foreach($festivals as $festival)
         <div class="col-md-4 animate-box">
           <a href="{{url('festivals/'.$festival->id.'')}}" class="item-grid text-center">
-            <div class="image" style="background-image: url({{$festival->img}})"></div>
+            <div class="image" style="background-image: url({{$festival->image_url}})"></div>
             <div class="v-align">
               <div class="v-align-middle">
                 <h3 class="title">{{$festival->name}}</h3>
@@ -87,7 +87,7 @@
 					</a>
 				</div>
 				<div class="col-md-12 text-center animate-box">
-					<p><a href="Events" class="btn btn-primary with-arrow">View More Post <i class="icon-arrow-right"></i></a></p>
+					<p><a href="festivals" class="btn btn-primary with-arrow">View More Post <i class="icon-arrow-right"></i></a></p>
 				</div>
 			</div>
 		</div>

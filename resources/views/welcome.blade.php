@@ -34,8 +34,8 @@
 			<div class="row">
         @foreach($festivals as $festival)
         <div class="col-md-4 animate-box">
-          <a href="{{url('festivals/'.$festival->id.'')}}" class="item-grid text-center">
-            <div class="image" style="background-image: url({{$festival->img}})"></div>
+          <a href="{{url('Events/'.$festival->id.'')}}" class="item-grid text-center">
+            <div class="image" style="background-image: url({{$festival->image_url}})"></div>
             <div class="v-align">
               <div class="v-align-middle">
                 <h3 class="title">{{$festival->name}}</h3>

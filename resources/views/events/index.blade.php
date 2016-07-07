@@ -1,110 +1,60 @@
 @extends('app')
-<link rel="stylesheet" href="http://s.mlcdn.co/animate.css">
-
 @section('content')
-<style media="screen">
-  div.completed{
-    border-left:2px solid red
-  }
-</style>
 
-<div id="fh5co-work-section" class="fh5co-light-grey-section">
-  <div class="container">
-    <div id="app">
-      <tasks :list="tasks"></tasks>
-    </div>
-  </div>
-</div>
+	<div class="container">
 
-<template id="tasks-template">
-  <h1  v-show="remaining">
-    @{{remaining}}
-    Active  Events   <a  class="btn btn-sm btn-danger pull-right"  @click="clearCompleted" > Clear All Completed</a>
-  </h1>
+	</div>
 
-  <div class="alert alert-danger"  v-show="!remaining">
-    <p class="lead" >
-      No Active  Events  <a  class="btn btn-sm btn-danger pull-right"  @click="clearCompleted" > Clear All Completed</a>
-    </p>
-  </div>
+  <div id="fh5co-work-section" class="fh5co-light-grey-section">
 
-    <div class="" v-show="list.length">
-      <div :class="{ 'completed':task.completed }"
-        v-for="task in list"
-
-      >
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title"></h3>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box">
+					<h2>Events in Chicago this Week</h2>
+					<div class="row">
+						<form class="" action="index.html" method="post">
+							<div class="col-md-8">
+								<input type="text" class="form-control" name="name" placeholder="Artists, Venues, Events">
+							</div>
+							<div class="col-md-4">
+								<a type="button" name="name" class="btn btn-success col-md-12" style="border-radius:2px" value="">Start Searching</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+        @foreach($events as $event)
+        <div class="col-md-6 animate-box">
+          <a href="{{url('Events/'.$event->id.'')}}" class="item-grid text-center">
+            <div class="image" style="background-image: url({{$event->image_url}})"></div>
+            <div class="v-align">
+              <div class="v-align-middle">
+                <h3 class="title">{{$event->name}} @ {{$event->title}}</h3>
+                <h5 class="category">{{$event->tracker_count}} {{$event->date}}</h5>
+              </div>
+            </div>
+          </a>
         </div>
-        <div class="panel-body">
-          @{{task.body}}<br>
-          Complete:@{{task.completed}}
-          <a  class="btn btn-sm btn-info pull-right" v-show="! task.completed"  @click="task.completed = ! task.completed" > Mark Completed </a>
-          <a  class="btn btn-sm btn-success pull-right" v-show="task.completed"  @click="task.completed = ! task.completed" > Mark Incomplete </a>
-          <a  class="btn btn-sm btn-danger pull-right" v-show="task.completed"  @click="deleteTask(task)" > Remove Task</a>
-        </div>
-        <div class="panel-footer">
-        </div>
-      </div>
-    </div>
-    <div class="" v-show="!list.length">
-      <div class="panel panel-body">
-        <h1>No Events Found</h1>
-      </div>
-    </div>
-  </div>
+        @endforeach
 
-</template>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.min.js"></script>
-<script type="text/javascript">
+				<div class="col-md-12 text-center animate-box">
+					<p><a href="#" class="btn btn-primary with-arrow">View More Projects <i class="icon-arrow-right"></i></a></p>
+				</div>
+			</div>
+		</div>
+	</div>
 
-  Vue.component('tasks', {
-    props:['list'],
 
-    template:'#tasks-template',
+	<div class="fh5co-cta" style="background-image: url(images/slide_2.jpg);">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="col-md-12 text-center animate-box">
+				<h3>Get Updated on Events in Your Area</h3>
+				<p><a href="#" class="btn btn-primary btn-outline with-arrow">Get started now! <i class="icon-arrow-right"></i></a></p>
+			</div>
+		</div>
+	</div>
 
-    computed: {
-      // a computed getter
-      remaining: function () {
-        var vm= this;
-        return this.list.filter(this.inProgress).length;
-      }
-    },
-
-    methods: {
-      isCompleted: function(task){
-        return task.completed;
-      },
-
-      inProgress: function(task){
-        return ! this.isCompleted(task);
-      },
-
-      deleteTask: function(task){
-        this.list.$remove(task);
-      },
-      clearCompleted: function(){
-        this.list=this.list.filter(this.inProgress);
-      }
-    }
-  });
-
-  new Vue({
-    el:'#app',
-
-    data:{
-        tasks:[
-          {body:'go to store', completed: false},
-          {body:'go to movies', completed: true},
-          {body:'eat more meat', completed: false},
-          {body:'go to flophouse', completed: false},
-          {body:'go to drugstore', completed: true},
-          {body:'eat more ass', completed: false},
-        ]
-    }
-  });
-
-</script>
 @stop

@@ -23,7 +23,7 @@ class FestivalsController extends Controller {
     ->groupBy('name')
     ->where('date','>','2016-07-08 00:00:00')
     ->orderBy('date','asc')
-    ->paginate(6);
+    ->paginate(30);
     return view('festivals.index')->with('festivals',$festivals);
   }
   /**
@@ -47,14 +47,18 @@ class FestivalsController extends Controller {
    */
   public function indexs()
   {
-    for ($i = 101; $i <= 150; $i++)
+    for ($i = 51; $i <= 100; $i++)
 {
   $festivals=file_get_contents('http://api.bandsintown.com/events/search.json?api_version=2.0&app_id=YOUR_APP_ID&location=chicago,il&date=2016-06-23,2018-01-01&page='.$i.'');
 
    foreach(json_decode($festivals) as $festival){
-     // Set Venue Values
-     $venue=new Venue;
 
+     /*
+      *
+      * Logging Venues
+      *
+      */
+     $venue=new Venue;
      $venue->name=  $festival->venue->name;
 
      $venue->city=  $festival->venue->city;
@@ -65,11 +69,16 @@ class FestivalsController extends Controller {
      $venue->save();
      $venue_id=$venue->id;
 
+     /*
+      *
+      * Logging Events
+      *
+      */
       $event=new Event;
-      // Set Event Values
       $event->venue_id=$venue_id;
       if(isset($festival->title)){
         $event->name= $festival->title;
+
       }
       else{
         $event->name=  $festival->venue->name;
@@ -89,8 +98,11 @@ class FestivalsController extends Controller {
       $event->save();
       $event_id=$event->id;
 
-
-      //Set Artist Values
+      /*
+       *
+       * Logging Artists
+       *
+       */
       foreach($festival->artists as $artist){
         $artist_event=new ArtistEvent;
         $artist_event->event_id=  $event_id;
@@ -148,20 +160,26 @@ class FestivalsController extends Controller {
 
   }
 
-  /**
-   * Display the specified resource.
-   *
-   * @param  int  $id
-   * @return Response
-   */
-  public function show($id)
-  {
-    $festival=\App\Event::find($id);
-    $bands=\App\Band::where('festival_id',$id)->get();
-    return view('festivals.show')->with('festival',$festival)->with('bands',$bands);
-  }
+
+      /**
+       * Show the application dashboard.
+       *
+       * @return Response
+       */
+      public function show($id)
+
+      {
+        $now = \Carbon\Carbon::now();
+        $future = \Carbon\Carbon::now()->addWeeks(2);
+        $event=Event::find($id);
+        $fuzzies=Event::where('name','Like','%'.$event->name.'%')->lists('id');
+        $artists=\App\ArtistEvent::whereIn('event_id',$fuzzies)->get();
+        $venue=\App\Venue::where('id',$event->venue_id)->first();
+        return view('festivals.show',compact('event','artists','venue'));
+      }
 
   /**
+
    * Show the form for editing the specified resource.
    *
    * @param  int  $id

@@ -23,7 +23,6 @@ class VenueController extends Controller
       $future = \Carbon\Carbon::now()->addWeeks(2);
       $search=null;
       $search=$request->search;
-
       $venues=DB::table('all_venues')->orderBy('upcoming_events','DESC')->paginate(20);
       return view('venues.index',compact('venues'));
     }
