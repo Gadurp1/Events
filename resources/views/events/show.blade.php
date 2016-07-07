@@ -54,7 +54,8 @@
 <div id="fh5co-work-section" class="fh5co-light-grey-section">
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
+
+    <div class="col-md-8">
       {{$event->description}}
       <div class="row">
         <div class="col-md-4 text-center">
@@ -112,6 +113,24 @@
       </section>
     </div>
   </div>
+</div>
+</div>
+</div>
+  <div id="fh5co-work-section" class="fh5co-light-grey-section">
+
+  <section class="col-md-8 col-md-offset-2">
+    <div class="row ">
+      <h1 class="text-center"><strong>{{date('D M d',strtotime($event->start))}}</strong></h1>
+      <hr>
+      @foreach($artists as $artist)
+        <div class="list-group-item ">
+            <img src="{{url('assets/img/icons/svg/compas.svg')}}" alt="Compas" class="hidden tile-image big-illustration">
+            <h5>{{$artist->name}}</h5>
+        </div>
+      @endforeach
+      </div>
+      <a href="{{$event->ticket_url}}">Buy Tickets</a>
+    </section>
 </div>
 </div>
 @stop
