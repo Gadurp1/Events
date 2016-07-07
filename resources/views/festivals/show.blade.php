@@ -102,7 +102,7 @@
             <div class="v-align">
               <div class="v-align-middle">
                 <h3 class="title">{{$artist->name}}</h3>
-                <h5 class="category">{{date('h:i:s',strtotime($artist->date))}}</h5>
+                <h5 class="category">{{date('h:i:s',strtotime($artist->event->date))}}</h5>
               </div>
             </div>
           </a>

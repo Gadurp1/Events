@@ -11,7 +11,7 @@ class ChecksChart extends Command
      *
      * @var string
      */
-    protected $signature = 'artists:get';
+    protected $signature = 'stuff:get';
 
     /**
      * The console command description.
@@ -37,23 +37,20 @@ class ChecksChart extends Command
      */
     public function handle()
     {
+      $log=\App\ArtLog::first();
       $artists=\App\ArtistEvent::orderBy('name','asc')
           ->groupBy('name')
-          ->where('name','>','Jenny')
-          ->where('name','<','John Carpenter Updated')
+          ->where('name','>',''.$log->name.'')
+          ->where('name','NOT LIKE','%/%')
           ->get();
 
       foreach($artists as $artist)
       {
         $name=str_replace(' ', '%20', $artist->name);
-        $name=str_replace('/', '%20', $name);
-        $name=str_replace(':', '', $name);
-        $name=str_replace('"', '', $name);
-        $name=str_replace('(', '', $name);
-        $name=str_replace(')', '', $name);
-
-
+        $name=str_replace('"', '%20', $name);
+        $name=htmlspecialchars_decode($name);
         $artist_info=file_get_contents('http://api.bandsintown.com/artists/'.$name.'.json?api_version=2.0&app_id=YOUR_APP_ID');
+
         $artist_info=json_decode($artist_info);
         /*
           * Logging artists
@@ -66,7 +63,13 @@ class ChecksChart extends Command
         $artist->upcoming_events_count=$artist_info->upcoming_event_count;
         $artist->update();
         $i=1;
+
+        $log=\App\ArtLog::first();
+        $log->name=$artist->name;
+        $log->update();
+
         $this->info($artist->name.' Updated ');
+
       }
     }
 }

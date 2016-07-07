@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use DB;
 use App\Event;
 use Spatie\Analytics\Period;
+use App\ArtistEvent;
+
 class EventController extends Controller
 {
 
@@ -21,20 +23,21 @@ class EventController extends Controller
       $now = \Carbon\Carbon::now();
 
       $future = \Carbon\Carbon::now()->addWeeks(2);
+
+      $query=\App\ArtistEvent::upcomingEvents()
+          ->selectRaw('artists.tracker_count,events.id,events.image_url as image_url,events.id as event_id,artists.name as name,artists.mbid,events.name as title,events.date,artists.image_url');
       $search=null;
-      $search=$request->search;
-      $events=\App\ArtistEvent::orderBy('date','ASC')
-      ->join('events', 'artists.event_id', '=', 'events.id')
-      ->selectRaw('artists.tracker_count,events.id,events.image_url as image_url,events.id as event_id,artists.name,artists.mbid,events.name as title,events.date,artists.image_url')
-          ->where('date','>',$now)
-          ->where('artists.image_url','!=','')
-          ->where('artists.name','LIKE', '%'.$search.'%')
-          ->where('tracker_count','>',10000)
-          ->orderBy('date','asc')
+      if($request->search){
+        $search=$request->search;
+        $query->where('artists.name','LIKE','%'.$search.'%')
+            ->orWhere('events.name','LIKE','%'.$search.'%');
+      }
+      $events=$query->orderBy('date','asc')
           ->orderBy('tracker_count','desc')
           ->groupBy('event_id')
           ->paginate(50);
-      return view('events.index',compact('events'));
+
+      return view('events.index',compact('events','search'));
     }
 
     /**
@@ -68,17 +71,26 @@ class EventController extends Controller
      *
      * @return Response
      */
-    public function show($id)
-
+    public function show($venue,$artist)
     {
+      /* De-Sluggify Url Params */
+      $event=str_replace('-', ' ', $venue);
+      $artist=str_replace('-', ' ', $artist);
+
+      /* Date Time Stuff */
       $now = \Carbon\Carbon::now();
       $future = \Carbon\Carbon::now()->addWeeks(2);
-      $event=Event::find($id);
+
+      /* De-Sluggify Url Params */
+      $event=Event::where('name',$event)->first();
       $fuzzies=Event::where('name','Like','%'.$event->name.'%')->lists('id');
+
+      $artist_detail=\App\ArtistEvent::where('name',$artist)->first();
+
       $artists=\App\ArtistEvent::whereIn('event_id',$fuzzies)
           ->orderBy('tracker_count','DESC')
           ->paginate(5);
       $venue=\App\Venue::where('id',$event->venue_id)->first();
-      return view('events.show',compact('event','artists','venue'));
+      return view('events.show',compact('event','artists','venue','artist_detail','additional_events'));
     }
 }

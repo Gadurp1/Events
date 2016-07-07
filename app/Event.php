@@ -42,4 +42,9 @@ class Event extends Model {
             'name' => 'required',
         ];
     }
+
+    public function artists()
+  	{
+  		return $this->hasMany('App\ArtistEvent');
+  	}
 }

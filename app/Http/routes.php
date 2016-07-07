@@ -11,8 +11,9 @@ use App\Repositories\ReportRepository;
 Route::get('', 'WelcomeController@index');
 
 Route::resource('Events', 'EventController');
-Route::resource('Venues', 'VenueController');
+Route::get('Events/{venue}/{artist}', 'EventController@show');
 
+Route::resource('Venues', 'VenueController');
 Route::resource('festivals', 'FestivalsController');
 Route::resource('eventdays', 'EventDaysController');
 Route::resource('stage', 'StageController');

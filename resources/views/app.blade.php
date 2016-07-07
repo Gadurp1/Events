@@ -72,12 +72,12 @@
 	<header id="fh5co-header"  class="navbar navbar-fixed-top navbar-default" style="background:#fff" role="banner">
 		<div class="container">
 			<div class="header-inner">
-				<h1><a href="index.html">Festly</a></h1>
+				<h1><a href="index.html">EventStash</a></h1>
 				<nav role="navigation">
 					<ul>
 						<li><a href="{{url('festivals')}}">Festivals</a></li>
 						<li><a href="{{url('Venues')}}">Venues</a></li>
-            <li><a href="{{url('Artists')}}">Artists</a></li>
+            <li><a href="{{url('Events')}}">Events</a></li>
 					</ul>
 				</nav>
 			</div>
