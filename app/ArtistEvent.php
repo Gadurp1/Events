@@ -38,6 +38,7 @@ class ArtistEvent extends Model {
 		->where('tracker_count','>',1000);
 	}
 
+
 	public function event()
 	{
 		return $this->belongsTo('App\Event','event_id');

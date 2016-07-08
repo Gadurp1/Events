@@ -17,7 +17,7 @@
       <div class="hidden">
         <h1 class="text-center">Search for all events going on in chicago</h1>
         <p class="text-center lead">Use the filters to find bands in your area that are coming to chicago soon</p>
-    
+
       </div>
     <div class="navbar  " >
       <div class="container">
@@ -29,7 +29,7 @@
               <div class="navbar-collapse collapse" style="padding-bottom:1em;padding-top:1em;" id="navbar-main">
                 <form class=" " role="search">
                   <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                       <input type="text" class="form-control col-md-8" name="search" autofocus="autofocus" placeholder="Artist, Venue, Event" active>
                     </div>
                     <div class="col-md-2">
@@ -42,7 +42,16 @@
                       </select>
                     </div>
                     <div class="col-md-2">
-                      <button type="submit" class="btn btn-success">Search</button>
+                      <select class="form-control" name="">
+                        <option>Underground</option>
+                        <option>Up And Coming</option>
+                        <option>Well Known</option>
+                        <option>Everyone Knows Them</option>
+                        <option>Chart Toppers</option>
+                      </select>
+                    </div>
+                    <div class="col-md-1">
+                      <button type="submit" class="btn btn-success btn-lg">Search</button>
                     </div>
                   </div>
                 </form>

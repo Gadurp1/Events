@@ -1,4 +1,4 @@
-@extends('app')
+@extends('spark::layouts.app')
 @section('content')
 <aside id="fh5co-hero" class="js-fullheight">
 <div class="flexslider js-fullheight">

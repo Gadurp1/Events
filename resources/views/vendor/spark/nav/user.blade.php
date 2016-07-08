@@ -8,7 +8,7 @@
     inline-template>
 
     <nav class="navbar navbar-default navbar-fixed-top" style="background:#fff">
-        <div class="container" v-if="user">
+        <div class="container-fluid" v-if="user">
             <div class="navbar-header">
                 <!-- Collapsed Hamburger -->
                 <div class="hamburger">
