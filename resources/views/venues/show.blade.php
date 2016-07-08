@@ -3,7 +3,7 @@
 <aside id="fh5co-hero" class="js-fullheight">
   <div class="flexslider js-fullheight">
     <ul class="slides">
-      <li style="background-image: url(https://40.media.tumblr.com/0db661a0285e77486b16edb37dd9d080/tumblr_o0eoealfov1u56203o1_1280.jpg);">
+      <li style="background-image: url(http://therealchicago.com/wp-content/uploads/2015/05/Kingston-Mines-Linsey-Alexander-with-dancers-web.jpg);">
         <div class="overlay-gradient"></div>
         <div class="container">
           <div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
