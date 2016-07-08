@@ -10,8 +10,7 @@ class Blog extends Model {
 	protected $table = 'blogs';
 	public $timestamps = true;
 
-
-	protected $fillable = array('title', 'body');
+	protected $fillable = array('title', 'content','image','slug');
 
 
 }
