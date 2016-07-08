@@ -10,17 +10,9 @@ use App\Repositories\ReportRepository;
 */
 Route::get('', 'WelcomeController@index');
 
-/* Documentation *///
-Route::get('Blogs',function(Illuminate\Http\Request $request){
-  $blogs=\App\Blog::first();
-  return view('blogs.index',compact('blogs'));
-});
-
-/* Documentation */
-Route::get('Blog/{id}',function(Illuminate\Http\Request $request){
-  $blog=\App\Blog::find($id);
-  return view('blogs.index',compact('blog'));
-});
+Route::resource('Events', 'EventController');
+Route::get('Events/{venue}/{artist}', 'EventController@show');
+Route::resource('Blogs', 'BlogController');
 /* Documentation */
 Route::get('Map',function(Illuminate\Http\Request $request){
 
@@ -39,3 +31,44 @@ Route::get('Map',function(Illuminate\Http\Request $request){
             ->paginate(500);
   return view('events.map',compact('events'));
 });
+
+Route::resource('Venues', 'VenueController');
+Route::resource('festivals', 'FestivalsController');
+Route::resource('eventdays', 'EventDaysController');
+Route::resource('stage', 'StageController');
+Route::resource('band', 'BandController');
+Route::resource('ticketprices', 'TicketPricesController');
+
+/*
+|
+|--------------------------------------------------------------------------
+| Report Generation Routes
+|--------------------------------------------------------------------------
+|
+*/
+Route::resource('Reports', 'ReportController');
+
+Route::get('Comprehensive-Report', function(ReportRepository $reportz){
+  return $reportz->comprehensiveReport();
+});
+
+
+Route::get('Comprehensive-Report/{year}', 'ReportController@comprehensiveReport');
+
+
+
+/* Documentation */
+Route::get('Docs',function(){
+  return view('documentation.index');
+});
+
+/*
+ *  =============
+ *  Forum Routes
+ *  =============
+*/
+
+Route::resource('forum', 'Forum\ForumController');
+Route::resource('forum/category', 'Forum\CategoryController');
+Route::resource('forum/topic', 'Forum\TopicController');
+Route::resource('forum/post', 'Forum\PostController');

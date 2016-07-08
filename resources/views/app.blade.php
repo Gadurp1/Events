@@ -48,7 +48,6 @@
 	<!-- Icomoon Icon Fonts-->
 	<link rel="stylesheet" href="{{url('assets/flew/css/icomoon.css')}}">
 	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="{{url('assets/flew/css/bootstrap.css')}}">
 	<!-- Flexslider  -->
 	<link rel="stylesheet" href="{{url('assets/flew/css/flexslider.css')}}">
 	<!-- Owl Carousel  -->
@@ -56,14 +55,17 @@
 	<link rel="stylesheet" href="{{url('assets/flew/css/owl.theme.default.min.css')}}">
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="{{url('assets/flew/css/style.css')}}">
-
 	<!-- Modernizr JS -->
 	<script src="{{url('assets/flew/js/modernizr-2.6.2.min.js')}}"></script>
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+	<link rel="stylesheet" href="{{url('assets/flew/css/bootstrap.css')}}">
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
 	</head>
 	<body>
 
@@ -75,9 +77,11 @@
 				<h1><a href="index.html">EventStash</a></h1>
 				<nav role="navigation">
 					<ul>
-						<li><a href="{{url('festivals')}}">Festivals</a></li>
+						<li><a href="{{url('festivals')}}">Fests</a></li>
 						<li><a href="{{url('Venues')}}">Venues</a></li>
             <li><a href="{{url('Events')}}">Events</a></li>
+						<li><a href="{{url('Blogs')}}">Blog</a></li>
+
 					</ul>
 				</nav>
 			</div>
@@ -131,9 +135,9 @@
           	</footer>
           	</div>
 
+						<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
 
           	<!-- jQuery -->
-          	<script src="{{url('assets/flew/js/jquery.min.js')}}"></script>
           	<!-- jQuery Easing -->
           	<script src="{{url('assets/flew/js/jquery.easing.1.3.js')}}"></script>
           	<!-- Bootstrap -->

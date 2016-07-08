@@ -168,7 +168,6 @@ return [
          Regulus\ActivityLog\ActivityLogServiceProvider::class,
          Barryvdh\DomPDF\ServiceProvider::class,
          Mpociot\ApiDoc\ApiDocGeneratorServiceProvider::class,
-         Spatie\Analytics\AnalyticsServiceProvider::class,
 
     ],
 
@@ -220,7 +219,6 @@ return [
         'Excel' => 'Maatwebsite\Excel\Facades\Excel',
         'Activity' => Regulus\ActivityLog\Models\Activity::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
-        'Analytics' => Spatie\Analytics\AnalyticsFacade::class,
 
 
     ],

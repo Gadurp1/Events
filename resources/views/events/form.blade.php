@@ -47,7 +47,7 @@
     <hr>
     <div class="row">
       {!! Form::label('description', 'Description:') !!}
-      {!! Form::textarea('description',null,['class'=>'form-control input-lg','id'=>'text']) !!}
+      {!! Form::textarea('description',null,['class'=>'form-control input-lg','id'=>'summernote']) !!}
     </div>
     <hr>
 

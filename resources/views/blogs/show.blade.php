@@ -9,7 +9,7 @@
       <div class="container">
         <div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
           <div class="slider-text-inner">
-            <h2>{{$blog->title}}</h2>
+            <h2 style="color:#fff;font-weight:800;">{{$blog->title}}</h2>
           </div>
         </div>
       </div>

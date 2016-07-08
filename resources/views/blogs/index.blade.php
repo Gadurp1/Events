@@ -1,28 +1,22 @@
 @extends('app')
 @section('content')
-<aside id="fh5co-hero" class="js-fullheight">
-<div class="flexslider js-fullheight">
-  <ul class="slides">
-
-    <li style="background-image: url({{$blogs->img}});">
-      <div class="overlay-gradient" style="background:#000;height:100%;opacity:.8;position:absolute:bottom:0;left:0">
-      <div class="container">
-        <div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
-          <div class="slider-text-inner">
-            <h2>{{$blogs->title}}</h2>
-          </div>
-        </div>
-      </div>
-    </li>
-  </ul>
-  </div>
-</aside>
 
 <div id="fh5co-work-section" class="fh5co-light-grey-section" >
   <div class="container">
-    <div class="col-md-8 col-md-offset-2" >
-
-      {!!$blogs->content!!}
+    <div class="col-md-12" >
+      @foreach($blogs as $blog)
+      <a href="Blogs/{{$blog->slug}}">
+        <div class="row">
+          <img src="{{$blog->image}}" class="img-responsive col-md-3" alt="" />
+          <div class="col-md-9">
+            <h1><strong>{{$blog->title}}</strong></h1>
+            <p>{!!substr($blog->content, 0, 150) !!}</p>
+          </div>
+        </div>
+      </a>
+      <hr>
+      <br>
+      @endforeach
     </div>
   </div>
 </div>

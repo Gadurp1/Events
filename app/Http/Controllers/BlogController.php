@@ -63,10 +63,10 @@ class BlogController extends Controller
     */
     public function update($id, Requests\BlogRequest  $request)
     {
-      $blog=\App\Blog::findorFail($id);
+      $blog=\App\Blog::find($id);
       $blog->update($request->all());
       session()->flash('flash_message','Blog Successfully Saved!');
-      return redirect('Blogs/'.$id.'');
+      return redirect('Blogs/'.$blog->slug.'');
     }
 
 }

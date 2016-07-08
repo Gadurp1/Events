@@ -36,7 +36,7 @@
 
     <div class="row">
       {!! Form::label('content', 'Content:') !!}
-      {!! Form::textarea('content',null,['class'=>'form-control input-lg','id'=>'text']) !!}
+      {!! Form::textarea('content',null,['class'=>'form-control input-lg','id'=>'summernote']) !!}
     </div>
   </div>
     <hr>
