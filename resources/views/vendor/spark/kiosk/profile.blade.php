@@ -83,7 +83,6 @@
                                     <!-- Total Revenue -->
                                     <p>
                                         <strong>Sum Rec Loss:</strong>
-                                        {{Auth()->user()->sumRecLoss['sum_rec_loss']}}
                                     </p>
                                 </div>
                             </div>

@@ -7,7 +7,7 @@
     :has-unread-announcements="hasUnreadAnnouncements"
     inline-template>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top" style="background:#fff">
         <div class="container" v-if="user">
             <div class="navbar-header">
                 <!-- Collapsed Hamburger -->

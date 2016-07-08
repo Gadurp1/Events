@@ -1,28 +1,5 @@
-@extends('app')
+@extends('spark::layouts.app')
 @section('content')
-
-	<div class="container">
-
-	</div>
-	<aside id="fh5co-hero" class="js-fullheight">
-		<div class="flexslider js-fullheight">
-			<ul class="slides">
-		   	<li style="background-image: url(http://66.media.tumblr.com/tumblr_lqbwp93pDY1qa28b0o1_1280.jpg);">
-		   		<div class="overlay-gradient"></div>
-		   		<div class="container">
-		   			<div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
-		   				<div class="slider-text-inner">
-		   					<h2>Stay up to date with Chicago Events!</h2>
-		   					<p><a href="#" class="btn btn-primary btn-lg">Sign Up</a></p>
-		   				</div>
-		   			</div>
-		   		</div>
-		   	</li>
-
-		  	</ul>
-	  	</div>
-	</aside>
-
 	<div id="fh5co-work-section" class="fh5co-light-grey-section">
 		<div class="container">
 			<div class="row">

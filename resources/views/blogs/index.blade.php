@@ -1,4 +1,4 @@
-@extends('app')
+@extends('spark::layouts.app')
 @section('content')
 
 <div id="fh5co-work-section" class="fh5co-light-grey-section" >

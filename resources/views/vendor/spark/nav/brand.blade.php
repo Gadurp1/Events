@@ -1,5 +1,3 @@
 <a class="navbar-brand" href="/home">
-  <p style="font-weight:800">
-    Event.ly
-  </p>
+    <strong style="font-size:24px;color:#000">EventStash<span style="color:#27e1ce;font-weight:800">.</span></strong>
 </a>

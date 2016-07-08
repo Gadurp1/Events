@@ -72,7 +72,7 @@
 
 	<div id="fh5co-page">
 	<header id="fh5co-header"  class="navbar navbar-fixed-top navbar-default" style="background:#fff" role="banner">
-		<div class="container">
+		<div class="container-fluid">
 			<div class="header-inner">
 				<h1><a href="index.html">EventStash</a></h1>
 				<nav role="navigation">

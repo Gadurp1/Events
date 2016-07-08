@@ -1,4 +1,4 @@
-@extends('app')
+@extends('spark::layouts.app')
 @section('content')
 <style media="screen">
   .search-banner{
@@ -11,23 +11,27 @@
     border-top:2px solid #43c8ae
   }
 </style>
-	<div class="container">
-	</div>
+
   <div id="fh5co-work-section" class="fh5co-light-grey-section" >
-
-      <div class="navbar navbar-default " style="background:#fff">
     <div class="container">
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.17/vue.min.js"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.6.1/lodash.min.js"></script>
-			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue-google-maps/0.1.19/vue-google-maps.js"></script>
+      <div class="hidden">
+        <h1 class="text-center">Search for all events going on in chicago</h1>
+        <p class="text-center lead">Use the filters to find bands in your area that are coming to chicago soon</p>
+    
+      </div>
+    <div class="navbar  " >
+      <div class="container">
+        			<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.17/vue.min.js"></script>
+        			<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.6.1/lodash.min.js"></script>
+        			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue-google-maps/0.1.19/vue-google-maps.js"></script>
 
-        <center >
-            <div class="navbar-collapse collapse" style="padding-bottom:1em;padding-top:1em;" id="navbar-main">
+            <center >
+              <div class="navbar-collapse collapse" style="padding-bottom:1em;padding-top:1em;" id="navbar-main">
                 <form class=" " role="search">
                   <div class="row">
                     <div class="col-md-8">
-                    <input type="text" class="form-control col-md-8" name="search" autofocus="autofocus" placeholder="Artist, Venue, Event" active>
-                  </div>
+                      <input type="text" class="form-control col-md-8" name="search" autofocus="autofocus" placeholder="Artist, Venue, Event" active>
+                    </div>
                     <div class="col-md-2">
                       <select class="form-control" name="">
                         <option>Underground</option>
@@ -38,16 +42,15 @@
                       </select>
                     </div>
                     <div class="col-md-2">
-                    <button type="submit" class="btn btn-success">Search</button>
-                  </div>
+                      <button type="submit" class="btn btn-success">Search</button>
+                    </div>
                   </div>
                 </form>
-            </div>
-        </center>
-    </div>
-</div>
-
-      <div class="container">
+              </div>
+            </center>
+          </div>
+        </div>
+        <br><br>
 			<div col-lass="row">
 
 
@@ -58,15 +61,15 @@
         ?>
         <div class="@if($events->count() < 6) col-md-12 @else col-md-4 @endif  animate-box" >
           <a href="{{url('Events/'.$event_link.'/'.$name_link.'')}}" class="item-grid text-center">
-            <div class="image" style="height:15em;background-image: url({{$event->image_url}})"></div>
-            <div class="v-align" style="height:10em">
-              <div class="v-align-middle">
-                <h3 class="title">{{$event->name}} @ {{$event->title}}</h3>
-                <h5 class="category">
-                  <strong>{{date('D M d, Y h:i',strtotime($event->date))}}</strong>
-                </h5>
-              </div>
+          <div class="image" style="height:15em;background-image: url({{$event->image_url}})"></div>
+          <div class="v-align" style="height:10em">
+            <div class="v-align-middle">
+              <h3 class="title">{{$event->name}} @ {{$event->title}}</h3>
+              <h5 class="category">
+                <strong>{{date('D M d, Y h:i',strtotime($event->date))}}</strong>
+              </h5>
             </div>
+          </div>
           </a>
         </div>
         @endforeach

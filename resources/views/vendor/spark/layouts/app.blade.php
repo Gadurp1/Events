@@ -14,6 +14,19 @@
 <link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.css">
 
     <link href="/css/app.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="{{url('assets/flew/css/animate.css')}}">
+    <!-- Icomoon Icon Fonts-->
+    <link rel="stylesheet" href="{{url('assets/flew/css/icomoon.css')}}">
+    <!-- Bootstrap  -->
+    <!-- Theme style  -->
+    <link rel="stylesheet" href="{{url('assets/flew/css/style.css')}}">
+    <!-- Flexslider  -->
+    <link rel="stylesheet" href="{{url('assets/flew/css/flexslider.css')}}">
+    <!-- Owl Carousel  -->
+    <link rel="stylesheet" href="{{url('assets/flew/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{url('assets/flew/css/owl.theme.default.min.css')}}">
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <script src="/js/sweetalert.min.js"></script>
 
@@ -44,7 +57,7 @@
       		</script>
       	@endif
         <!-- Main Content -->
-        <div class="">
+        <div class="" style="margin-top:-1em">
 
           @yield('content')
         </div>
@@ -55,9 +68,18 @@
             @include('spark::modals.session-expired')
         @endif
 
-        <!-- JavaScript -->
-        <script src="/js/app.js"></script>
 
     </div>
 </body>
+<!-- JavaScript -->
+<script src="/js/app.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
+
+<script src="{{url('assets/flew/js/owl.carousel.min.js')}}"></script>
+<!-- Flexslider -->
+<script src="{{url('assets/flew/js/jquery.flexslider-min.js')}}"></script>
+
+<!-- MAIN JS -->
+<script src="{{url('assets/flew/js/main.js')}}"></script>
+
 </html>

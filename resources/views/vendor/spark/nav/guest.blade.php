@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top" style="background:#fff">
     <div class="container">
         <div class="navbar-header">
             <!-- Collapsed Hamburger -->
@@ -29,3 +29,4 @@
         </div>
     </div>
 </nav>
+<br><br>

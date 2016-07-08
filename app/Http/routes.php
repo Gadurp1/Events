@@ -10,7 +10,8 @@ use App\Repositories\ReportRepository;
 */
 Route::get('', 'WelcomeController@index');
 
-Route::resource('Events', 'EventController');
+Route::resource('Event', 'EventController');
+Route::get('Events', 'EventController@index');
 Route::get('Events/{venue}/{artist}', 'EventController@show');
 Route::resource('Blogs', 'BlogController');
 /* Documentation */
@@ -28,7 +29,7 @@ Route::get('Map',function(Illuminate\Http\Request $request){
         $events=$query->orderBy('date','asc')
             ->orderBy('tracker_count','desc')
             ->groupBy('event_id')
-            ->paginate(500);
+            ->paginate(50);
   return view('events.map',compact('events'));
 });
 
@@ -38,35 +39,6 @@ Route::resource('eventdays', 'EventDaysController');
 Route::resource('stage', 'StageController');
 Route::resource('band', 'BandController');
 Route::resource('ticketprices', 'TicketPricesController');
-
-/*
-|
-|--------------------------------------------------------------------------
-| Report Generation Routes
-|--------------------------------------------------------------------------
-|
-*/
-Route::resource('Reports', 'ReportController');
-
-Route::get('Comprehensive-Report', function(ReportRepository $reportz){
-  return $reportz->comprehensiveReport();
-});
-
-
-Route::get('Comprehensive-Report/{year}', 'ReportController@comprehensiveReport');
-
-
-
-/* Documentation */
-Route::get('Docs',function(){
-  return view('documentation.index');
-});
-
-/*
- *  =============
- *  Forum Routes
- *  =============
-*/
 
 Route::resource('forum', 'Forum\ForumController');
 Route::resource('forum/category', 'Forum\CategoryController');

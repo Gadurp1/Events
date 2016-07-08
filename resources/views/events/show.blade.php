@@ -1,4 +1,4 @@
-@extends('app')
+@extends('spark::layouts.app')
 
 @section('content')
 <style>
@@ -36,23 +36,8 @@
        }
      </script>
 </div>
-<header id="fh5co-header"  class="hidden navbar navbar-fixed-top navbar-default" style="margin-top:75px" role="banner">
-  <div class="container">
-    <div class="header-inner">
-      <div class="row">
 
-        <h1><small><img src="{{$artist_detail->thumb_urlCopy}}" style="margin-top:-1.5em" class="col-md-2 img-circle img-responsive" alt="" /> {{$artist_detail->name}} @ {{$event->name}}</small></h1>
-      </div>
-      <nav role="navigation">
-        <ul>
-          <li><a href="{{url('Venues')}}">Tickets</a></li>
-          <li><a href="{{url('Events')}}">Website</a></li>
-        </ul>
-      </nav>
-    </div>
-  </div>
-</header>
-<aside id="fh5co-hero" class="js-fullheight">
+<aside id="fh5co-hero" class="js-fullheight" style="margin-top:-10px">
   <div class="flexslider js-fullheight">
     <ul class="slides">
       <li style="background-image: url({{$artist_detail->image_url}});">
