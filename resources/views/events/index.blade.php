@@ -13,16 +13,16 @@
 </style>
 	<div class="container">
 	</div>
-  <div id="fh5co-work-section" class="fh5co-light-grey-section" style="margin-top:80px">
+  <div id="fh5co-work-section" class="fh5co-light-grey-section" >
 
-      <div class="navbar navbar-default navbar-fixed-top" style="background:#fff">
+      <div class="navbar navbar-default " style="background:#fff">
     <div class="container">
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.17/vue.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.6.1/lodash.min.js"></script>
 			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue-google-maps/0.1.19/vue-google-maps.js"></script>
 
         <center >
-            <div class="navbar-collapse collapse" style="margin-top:75px;padding-bottom:1em;padding-top:1em;" id="navbar-main">
+            <div class="navbar-collapse collapse" style="padding-bottom:1em;padding-top:1em;" id="navbar-main">
                 <form class=" " role="search">
                   <div class="row">
                     <div class="col-md-8">
@@ -46,42 +46,11 @@
         </center>
     </div>
 </div>
-<div class="jumbotron">
-	<google-map style="width: 100%; height: 300px; position: absolute; left:0; top:0"
-			:center="{lat: 1.38, lng: 103.8}"
-			:marker="{lat: 1.38, lng: 103.8}"
-			:zoom="12"
-	>
 
-	</google-map>
-</div>
       <div class="container">
 			<div col-lass="row">
 
 
-				<script>
-				VueGoogleMap.load({
-					key: 'AIzaSyBnwQ6wvh-J0HHE-492La6liEN9hX0l-mI',
-				})
-				Vue.component('google-map', VueGoogleMap.Map);
-				new Vue({
-						el: 'body',
-				});
-
-				</script>
-        <div class="col-md-8 animate-box" >
-          <a href="{{url('Events/'.$events[10]['id'].'')}}" class="item-grid text-center">
-            <div class="image" style="background-image: url({{$events[10]['image_url']}})"></div>
-            <div class="v-align" style="height:10em">
-              <div class="v-align-middle">
-                <h3 class="title">{{$events[10]['name']}} @ {{$events[10]['title']}}</h3>
-                <h5 class="category">
-                  <strong>{{date('D M d, Y h:i',strtotime($events[10]['date']))}}</strong>
-                </h5>
-              </div>
-            </div>
-          </a>
-        </div>
         @foreach($events as $event)
         <?php
           $event_link=str_replace(' ', '-', $event->title);
@@ -89,7 +58,7 @@
         ?>
         <div class="@if($events->count() < 6) col-md-12 @else col-md-4 @endif  animate-box" >
           <a href="{{url('Events/'.$event_link.'/'.$name_link.'')}}" class="item-grid text-center">
-            <div class="image" style="background-image: url({{$event->image_url}})"></div>
+            <div class="image" style="height:15em;background-image: url({{$event->image_url}})"></div>
             <div class="v-align" style="height:10em">
               <div class="v-align-middle">
                 <h3 class="title">{{$event->name}} @ {{$event->title}}</h3>
